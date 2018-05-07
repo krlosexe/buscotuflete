@@ -56,6 +56,50 @@ $(document).ready(function(){
         
     }
 
+
+
+    $("#btn-login").on("click", function(){
+    	var datos = {
+			"username"  : $("#username").val(),
+			"password"  : $("#password").val()
+		}
+
+		$.ajax({
+			type    : "GET",
+			dataType: "json",
+			data    : datos,
+			url     : url+"auth/login",
+
+			beforeSend: function () {
+		       $('#btn-login').text(' Enviando...').attr('disabled', 'disabled').prepend('<i class="fa fa-spinner fa-spin"></i>');
+		    },
+
+			success(data){
+				if (data.success == true) {
+					$.gritter.add({
+						title:	'Notificacion',
+						text:	data.message,
+						sticky: false,
+					    class_name: 'sticky-success',
+					});	
+				}else{
+					$.gritter.add({
+						title:	'Error',
+						text:	data.message,
+						sticky: false
+					});	
+				}
+			}
+		}).done((data, textStatus, jqXHR) => {
+		    if (jqXHR.status === 200) {
+		        
+		    }
+	  })
+	  .always(() => {
+        $('#btn-login').text('Registrarme').removeAttr('disabled');
+      });
+    })
+
     $("#btn-registro").on("click", function(){
     	var datos = {
 			"tipo_user" : $("#tipo_user").val(),

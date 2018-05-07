@@ -63,6 +63,90 @@ class Auth extends CI_Controller {
 		}
 	}
 
+
+	public function login()
+	{
+		$this->load->model('Users_model');
+		$username = $this->input->get("username");
+		$password = $this->input->get("password");
+
+		$data = array(
+			'user'      => $username,
+		    'password'  => $password
+		);
+
+		$this->form_validation->set_data($data);
+		$this->form_validation->set_rules('user', 'usuario', 'required');
+		$this->form_validation->set_rules('password', 'contraseña', 'required');
+
+		if ($this->form_validation->run()){
+			$res      = $this->Users_model->login($username, sha1($password));
+			if (!$res) {
+				$datos = array('success' => false,
+	                           'message' => "Usuario o Contraseña incorrecto");
+		   		 echo  json_encode($datos);
+			}else{
+				$data_login = array('id'        => $res->id,
+				 					'name_user' => $res->loginUsers,
+				 					'login'     => TRUE,
+				 				    'rol'       => $res->rol_id);
+
+				$this->session-> set_userdata($data_login);
+
+				$datos = array('success' => true,
+
+	                           'message' => "Bienvenido");
+
+		   		 echo  json_encode($datos);
+
+			}
+
+		}else{
+
+			$valid =  form_error("user", "<span>","</span><br><br>").
+
+					  form_error("password", "<span>","</span><br><br>");
+
+
+
+		    $campos = array('user' => form_error("user", "<span class='help-block'>","</span>"),
+
+		                    'password' => form_error("password", "<span class='help-block'>","</span>"));
+
+		    $campo = 0;
+
+		    $error = 0;
+
+		    foreach ($campos as $key => $value) {
+
+		    	if ($value != "") {
+
+		    		$campo = $key;
+
+		    		$error = $value;
+
+		    		break;
+
+		    	}
+
+		    }
+
+			$datos = array('success' => false,
+
+				           'valid'   => true,
+
+				           'campos'  => $campos,
+
+		                   'message' => $valid);
+
+			echo  json_encode($datos);
+
+		}
+
+		
+
+	}
+
 }
 
 /* End of file auth.php */
