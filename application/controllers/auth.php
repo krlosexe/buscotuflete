@@ -17,6 +17,8 @@ class Auth extends CI_Controller {
 		$email      = $this->input->get("email");
 		$password   = $this->input->get("password");
 
+		$this->load->model('Users_model');
+
 		$data = array(
 		    'loginUsers'  => $username,
 		    'email'       => $email,
@@ -36,7 +38,7 @@ class Auth extends CI_Controller {
 
 
 		if ($this->form_validation->run()){
-				if ($this->users_model->save($data)){
+				if ($this->Users_model->save($data)){
 					$datos = array('success' => true,
 			                       'message' => "Registro exitoso ahora inicie sesion");
 				    echo  json_encode($datos);
