@@ -75,27 +75,25 @@ $(document).ready(function(){
 		    },
 
 			success(data){
-				//console.log(data);
+				if (data.succes == true) {
+					$.gritter.add({
+						title:	'Notificacion',
+						text:	data.message,
+						sticky: false,
+					    class_name: 'sticky-success',
+					});	
+				}else{
+					$.gritter.add({
+						title:	'Error',
+						text:	data.message,
+						sticky: false
+					});	
+				}
 			}
 		}).done((data, textStatus, jqXHR) => {
-
-	    if (jqXHR.status === 200) {
-	        if(jqXHR.responseJSON.success == true){
-	          $.gritter.add({
-				title:	'Normal notification',
-				text:	'This is a normal notification',
-				sticky: false,
-			    class_name: 'sticky-success',
-			});	
-	        }else{
-	           $.gritter.add({
-					title:	'Normal notification',
-					text:	'This is a normal notification',
-					sticky: false,
-				    class_name: 'sticky-success',
-				});	
-	         }
-	    }
+		    if (jqXHR.status === 200) {
+		        
+		    }
 	  })
 	  .always(() => {
         $('#btn-registro').text('Registrarme').removeAttr('disabled');

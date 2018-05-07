@@ -25,9 +25,9 @@ class Auth extends CI_Controller {
 		);
 
 		$this->form_validation->set_data($data);
-		$this->form_validation->set_rules('loginUsers', 'nombre de usuario', 'required|valid_email|is_unique[users.loginUsers]');
+		$this->form_validation->set_rules('loginUsers', 'nombre de usuario', 'required|is_unique[users.loginUsers]');
 
-		$this->form_validation->set_rules('email',  'email', 'required|is_unique[users.email]');
+		$this->form_validation->set_rules('email',  'email', 'required|valid_email|is_unique[users.email]');
 
 		$this->form_validation->set_rules('passUsers', 'contraseña', 'required');
 
