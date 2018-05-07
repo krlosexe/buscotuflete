@@ -75,7 +75,7 @@ $(document).ready(function(){
 		    },
 
 			success(data){
-				if (data.succes == true) {
+				if (data.success == true) {
 					$.gritter.add({
 						title:	'Notificacion',
 						text:	data.message,
