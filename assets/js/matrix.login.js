@@ -127,6 +127,7 @@ $(document).ready(function(){
 						sticky: false,
 					    class_name: 'sticky-success',
 					});	
+					window.location.href =url+"dashboard";
 				}else{
 					$.gritter.add({
 						title:	'Error',

@@ -37,8 +37,16 @@ class Auth extends CI_Controller {
 
 		if ($this->form_validation->run()){
 				if ($this->Users_model->save($data)){
+
+					
+				    $id = $this->Users_model->lastID();
+					$data_login = array('id'        => $id,
+					 					'name_user' => $username,
+					 					'login'     => TRUE,
+					 				    'rol'       => 2);
+					$this->session-> set_userdata($data_login);
 					$datos = array('success' => true,
-			                       'message' => "Registro exitoso ahora inicie sesion");
+			                       'message' => "Registro exitoso");
 				    echo  json_encode($datos);
 				}else{
 					$datos = array('success' => false,

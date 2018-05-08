@@ -137,6 +137,12 @@ class users_model extends CI_Model {
 	}
 
 
+	public function lastID()
+	{
+		return $this->db->insert_id();
+	}
+
+
 
 }
 
