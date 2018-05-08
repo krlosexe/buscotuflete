@@ -12,7 +12,6 @@ class Auth extends CI_Controller {
 
 	public function store()
 	{
-		$tipo_user  = $this->input->get("tipo_user");
 		$username   = $this->input->get("username");
 		$email      = $this->input->get("email");
 		$password   = $this->input->get("password");
@@ -23,7 +22,7 @@ class Auth extends CI_Controller {
 		    'loginUsers'  => $username,
 		    'email'       => $email,
 		    'passUsers'   => sha1($password),
-			'rol_id'      => $tipo_user
+			'rol_id'      => 2
 		);
 
 		$this->form_validation->set_data($data);
@@ -33,7 +32,6 @@ class Auth extends CI_Controller {
 
 		$this->form_validation->set_rules('passUsers', 'contraseña', 'required');
 
-		$this->form_validation->set_rules('rol_id', 'tipo de usuario', 'required');
 
 
 
@@ -51,8 +49,7 @@ class Auth extends CI_Controller {
 		}else{
 			$valid =  form_error("loginUsers", "<span>","</span><br><br>").
 					  form_error("email", "<span>","</span><br><br>").
-					  form_error("passUsers", "<span>","</span><br><br>").
-					  form_error("rol_id", "<span>","</span><br><br>");
+					  form_error("passUsers", "<span>","</span><br><br>");
 
 
 			$datos = array('success' => false,

@@ -44,17 +44,6 @@
              <form id="formcreate" action="#" class="form-vertical">
                 <p class="normal_text">Registre sus datos de acceso</p>
                     <div class="control-group">
-                      <div class="controls">
-                        <div class="main_input_box">
-                            <select id="tipo_user">
-                              <option value="">Tipo de Usuario</option>
-                              <option value="2">Cliente</option>
-                              <option value="3">Transporte</option>
-                            </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="control-group">
                         <div class="controls">
                             <div class="main_input_box">
                                 <span class="add-on bg_lg"><i class="icon-user"> </i></span><input type="text" placeholder="Nombre de Usuario" id="username" />
