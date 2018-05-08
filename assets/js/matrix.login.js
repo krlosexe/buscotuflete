@@ -60,8 +60,8 @@ $(document).ready(function(){
 
     $("#btn-login").on("click", function(){
     	var datos = {
-			"username"  : $("#username").val(),
-			"password"  : $("#password").val()
+			"username"  : $("#username_login").val(),
+			"password"  : $("#password_login").val()
 		}
 
 		$.ajax({
@@ -82,6 +82,7 @@ $(document).ready(function(){
 						sticky: false,
 					    class_name: 'sticky-success',
 					});	
+					 window.location.href =url+"dashboard";
 				}else{
 					$.gritter.add({
 						title:	'Error',
@@ -96,7 +97,7 @@ $(document).ready(function(){
 		    }
 	  })
 	  .always(() => {
-        $('#btn-login').text('Registrarme').removeAttr('disabled');
+        $('#btn-login').text('Entrar').removeAttr('disabled');
       });
     })
 

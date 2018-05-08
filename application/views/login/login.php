@@ -5,14 +5,14 @@
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <span class="add-on bg_lg"><i class="icon-user"> </i></span><input type="text" placeholder="Nombre de Usuario" id="username" />
+                            <span class="add-on bg_lg"><i class="icon-user"> </i></span><input type="text" placeholder="Nombre de Usuario" id="username_login" />
                         </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <span class="add-on bg_ly"><i class="icon-lock"></i></span><input type="password" placeholder="Contraseña" id="password" />
+                            <span class="add-on bg_ly"><i class="icon-lock"></i></span><input type="password" placeholder="Contraseña" id="password_login" />
                         </div>
                     </div>
                 </div>
