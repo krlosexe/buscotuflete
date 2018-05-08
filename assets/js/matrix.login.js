@@ -23,7 +23,7 @@ $(document).ready(function(){
 
 	$('#to-login-2').click(function(){
 		
-		$("#formcreate-").hide();
+		$("#formcreate").hide();
 		$("#loginform").fadeIn();
 	});
 	
