@@ -16,6 +16,13 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="control-group" style="margin-left: 3%;">
+                    <div class="controls">
+                        <input type="checkbox"  id="remenber"/>
+                        <label for="remenber" style="color: #fff;">Recordad contraseña</label>
+                    </div>
+                </div>
                 <div class="form-actions">
                     <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">Olvido su contraseña?</a></span>
                     <span class="pull-right"><a type="submit" id="btn-login" class="btn btn-success" /> Entrar</a></span>

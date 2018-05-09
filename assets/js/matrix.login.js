@@ -56,12 +56,21 @@ $(document).ready(function(){
         
     }
 
-
+    var act = 0;
+	$("#remenber").on("change", function(){
+		if (act == 0) {
+			act = 1;
+		}else if (act == 1) {
+			act = 0;
+		}
+	});
 
     $("#btn-login").on("click", function(){
+    	
     	var datos = {
 			"username"  : $("#username_login").val(),
-			"password"  : $("#password_login").val()
+			"password"  : $("#password_login").val(),
+			"remenber"  : act
 		}
 
 		$.ajax({

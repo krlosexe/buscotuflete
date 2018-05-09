@@ -32,15 +32,10 @@ class users_model extends CI_Model {
 	}
 
 	public function getUser($id)
-
 	{
-
 		$this->db->where('id', $id);
-
 		$resultados = $this->db->get('users');
-
 		return $resultados->row();
-
 	}
 
 

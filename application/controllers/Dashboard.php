@@ -15,6 +15,8 @@ class Dashboard extends CI_Controller {
 	}
 	public function index()
 	{
+		// $this->load->helper('cookie');
+		// echo $this->input->cookie('user');
 		// $control  = $this->permisos;
 		// $valid    = $this->valid;
 		// $opciones = array('opciones'   => $control["opciones"]);

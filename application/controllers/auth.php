@@ -5,9 +5,24 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('layouts/header');
-		$this->load->view('login/login');
-		$this->load->view('layouts/footer');
+		$this->load->model('Users_model');
+		$this->load->helper('cookie');
+		$cookie = $this->input->cookie('user');
+		if (isset($cookie)){
+			$res = $this->Users_model->getUser($cookie);
+			if ($res) {
+				$data_login = array('id'        => $res->id,
+				 					'name_user' => $res->loginUsers,
+				 					'login'     => TRUE,
+				 				    'rol'       => $res->rol_id);
+				$this->session->set_userdata($data_login);
+				redirect(base_url()."dashboard");
+			}
+		}else{
+			$this->load->view('layouts/header');
+			$this->load->view('login/login');
+			$this->load->view('layouts/footer');
+		}
 	}
 
 	public function store()
@@ -37,7 +52,6 @@ class Auth extends CI_Controller {
 
 		if ($this->form_validation->run()){
 				if ($this->Users_model->save($data)){
-
 					
 				    $id = $this->Users_model->lastID();
 					$data_login = array('id'        => $id,
@@ -74,6 +88,7 @@ class Auth extends CI_Controller {
 		$this->load->model('Users_model');
 		$username = $this->input->get("username");
 		$password = $this->input->get("password");
+		$remember = $this->input->get("remenber");
 
 		$data = array(
 			'user'      => $username,
@@ -85,7 +100,7 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('password', 'contraseña', 'required');
 
 		if ($this->form_validation->run()){
-			$res      = $this->Users_model->login($username, sha1($password));
+			$res   = $this->Users_model->login($username, sha1($password));
 			if (!$res) {
 				$datos = array('success' => false,
 	                           'message' => "Usuario o Contraseña incorrecto");
@@ -95,6 +110,15 @@ class Auth extends CI_Controller {
 				 					'name_user' => $res->loginUsers,
 				 					'login'     => TRUE,
 				 				    'rol'       => $res->rol_id);
+				if ($remember == 1) {
+					$this->load->helper('cookie');
+			        $name   = 'user';
+			        $value  = $res->id;
+			        $expire = time()+1000;
+			        $path  = '/';
+			        $secure = TRUE;
+			        setcookie($name,$value,$expire,$path); 
+				}
 				$this->session-> set_userdata($data_login);
 				$datos = array('success' => true,
 	                           'message' => "Bienvenido");
@@ -116,6 +140,8 @@ class Auth extends CI_Controller {
 	public function loguot()
 	{
 		$this->session->sess_destroy();
+		$this->load->helper('cookie');
+		delete_cookie('user');
 		redirect(base_url());
 	}
 }
