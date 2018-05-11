@@ -12,4 +12,6 @@
 			<link rel="stylesheet" href="<?= base_url()?>assets/css/fullcalendar.css" />
 			<link rel="stylesheet" href="<?= base_url()?>assets/css/matrix-style.css" />
 			<link rel="stylesheet" href="<?= base_url()?>assets/css/matrix-media.css" />
+
+			<script src="<?= base_url()?>assets/js/jquery.min.js"></script> 
 	</head>
