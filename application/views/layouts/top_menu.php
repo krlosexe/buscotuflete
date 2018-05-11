@@ -12,6 +12,8 @@
       <ul class="dropdown-menu">
         <li><a href="<?= base_url()?>user/profile"><i class="icon-user"></i> Mi Perfil</a></li>
         <li class="divider"></li>
+        <li><a href="<?= base_url()?>user/password"><i class="icon-lock"></i> Cambiar contraseña</a></li>
+        <li class="divider"></li>
         <li><a href="<?= base_url()?>auth/loguot"><i class="icon-key"></i> Cerrar Sesion</a></li>
       </ul>
     </li>

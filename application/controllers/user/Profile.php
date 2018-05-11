@@ -13,8 +13,8 @@ class Profile extends CI_Controller {
 			$this->load->model('users_model');
 			$this->load->model('provincias_model');
 		}
-
 	}
+
 	public function index()
 	{
 		$id_user  = $this->session->userdata("id");
@@ -303,6 +303,8 @@ class Profile extends CI_Controller {
 		}
 		echo json_encode($comunas);
     }
+
+
 }
 
 /* End of file Profile.php */
