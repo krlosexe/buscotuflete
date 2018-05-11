@@ -133,7 +133,7 @@
                   <select class="span11" id="provincias">
                     <option value="">Seleccione</option>
                     <?php foreach ($provincias as $value): ?>
-                      <option value="<?= $value->id ?>" <?= $user->id_provincia == $value->id ? 'selected': ''?>><?=$value->descripcion?></option>
+                      <option value="<?= $value->id ?>" <?= $user->id_region == $value->id ? 'selected': ''?>><?=$value->descripcion?></option>
                     <?php endforeach ?>
                   </select>
                 </div>
@@ -143,18 +143,27 @@
                 <div class="controls">
                   <select class="span11" id="comunas" disabled>
                     <option value="">Seleccione</option>
-                    <?php if ($user->id_provincia != 0): ?>
+                    <?php if ($user->id_region != 0): ?>
                       <?php foreach ($comunas as $value): ?>
-                        <?php if ($value->id_comuna == $user->id_comuna): ?>
-                          <option value="<?= $user->id_comuna ?>" selected><?= $value->comuna?></option>
+                        <?php if ($value->id == $user->id_comuna): ?>
+                          <option value="<?= $user->id_comuna ?>" selected><?= $value->descripcion?></option>
                         <?php endif ?>
                       <?php endforeach ?>
                     <?php endif ?>
                   </select>
                 </div>
               </div>
+
+              <div class="control-group">
+                <label class="control-label">Direccion: </label>
+                <div class="controls">
+                 <textarea id="direccion"><?= $user->direccion?></textarea>
+                </div>
+              </div>
+
+
               <div class="form-actions">
-                <button type="submit" id="btn-contacto" class="btn btn-success">Guardar</button>
+                <button type="submit" id="btn-location" class="btn btn-success">Guardar</button>
               </div>
             </form>
           </div>
@@ -314,23 +323,90 @@
 
           success(data){
             var campos = data;
+
             $('#comunas').removeAttr('disabled');
-            $('#comunas').append($('<option>',
-             {
-                value: "",
-                text : "Seleccione..."
-
-            }));
-
-            $.each(campos, function(i, item){
+            if (data.length > 0) {
               $('#comunas').append($('<option>',
-             {
-                value: item.id,
-                text : item.canton 
+               {
+                  value: "",
+                  text : "Seleccione..."
 
               }));
-            });
+
+              $.each(campos, function(i, item){
+                $('#comunas').append($('<option>',
+               {
+                  value: item.id,
+                  text : item.descripcion 
+
+                }));
+              });
+            }else{
+              $('#comunas').append($('<option>',
+               {
+                  value: 0,
+                  text : "No Aplica"
+
+                }));
+            }
+            
           }
         })
       });
+</script>
+
+
+
+<script>
+  $("#btn-location").on("click", function(){
+    var datos = {
+      "provincias" : $("#provincias").val(),
+      "comunas"    : $("#comunas").val(),
+      "direccion"  : $("#direccion").val()
+    }
+
+    $.ajax({
+      type    : "GET",
+      dataType: "json",
+      data    : datos,
+      url     : "<?= base_url()?>user/profile/updatePerfillocation",
+      beforeSend: function () {
+           $('#btn-location').text(' Enviando...').attr('disabled', 'disabled').prepend('<i class="fa fa-spinner fa-spin"></i>');
+        },
+      success(data){
+        if (data.success == false) {
+          var campos = data.campos;
+          console.log(campos)
+          $.each(campos, function(i, item) {
+            if (item != "") {
+              var id = "#"+i;
+              var cont = $(id).parent().parent().addClass("error");
+              $(id).parent().children("span").remove();
+              cont = $(id).parent().append(item);
+            }else{
+              var id = "#"+i;
+              var cont = $(id).parent().removeClass("has-error");
+              $(id).parent().children("span").remove();
+            }
+         });
+        }else{
+          $.gritter.add({
+            title:  'Notificacion',
+            text: data.message,
+            sticky: false,
+              class_name: 'sticky-success',
+          }); 
+        }
+      }
+
+    }).done((data, textStatus, jqXHR) => {
+      if (jqXHR.status === 200) {
+      }
+
+    })
+    .always(() => {
+        $('#btn-location').text('Actualizar').removeAttr('disabled');
+      });
+    //console.log(datos);
+  })
 </script>

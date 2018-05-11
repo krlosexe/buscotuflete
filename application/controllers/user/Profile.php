@@ -224,6 +224,72 @@ class Profile extends CI_Controller {
     }
 
 
+    public function updatePerfilLocation($id="")
+
+    {
+
+    	if ($id != "") {
+			$id_user = $id;
+		}else{
+			$id_user = $this->session->userdata("id");
+		}
+
+    	$provincias = $this->input->get("provincias");
+    	$comunas    = $this->input->get("comunas");
+    	$direccion  = $this->input->get("direccion");
+
+
+    	$data = array(
+			'provincias' => $provincias,
+			'comunas'    => $comunas,
+			'direccion'  => $direccion
+		);
+
+		$this->form_validation->set_data($data);
+    	$this->form_validation->set_rules('provincias', 'region', 'required');
+		$this->form_validation->set_rules('comunas', 'comunas', 'required');
+		$this->form_validation->set_rules('direccion', 'direccion', 'required');
+
+
+		if ($this->form_validation->run()){
+			$datos   = array('id_region'  => $provincias,
+							 'id_comuna'  => $comunas, 
+				             'direccion'  => $direccion);
+
+			if ($this->users_model->update($id_user, $datos)) {
+        		$errors = array('success' => true,
+	                            'message' => 'Datos Actualizados exitosamente');
+           		echo  json_encode($errors);
+        	}else{
+        		$datos = array('success' => false,
+		                       'message' => 'A ocurrudo un error');
+			    echo  json_encode($datos);
+        	}
+		}else{
+
+		    $campos = array('provincias' => form_error("provincias", "<span class='help-block'>","</span>"),
+		                    'comunas'    => form_error("comunas", "<span class='help-block'>","</span>"),
+		                    'direccion'  => form_error("direccion", "<span class='help-block'>","</span>"));
+
+		    $campo = 0;
+		    $error = 0;
+		    foreach ($campos as $key => $value) {
+		    	if ($value != "") {
+		    		$campo = $key;
+		    		$error = $value;
+		    		break;
+		    	}
+		    }
+
+	    	$datos = array('success' => false,
+				           'valid'   => true,
+				           'campos'  => $campos,
+		                   'message' => "");
+			echo  json_encode($datos);
+		}
+    }
+
+
     public function getComunas()
     {
     	$id_provincia  = $this->input->get("id");
@@ -231,8 +297,8 @@ class Profile extends CI_Controller {
 
 		$datos = array();
 		foreach ($comunas as $value) {
-			$datos["id"]     = $value->id_comuna;
-			$datos["nombre"] = $value->comuna;
+			$datos["id"]     = $value->id;
+			$datos["nombre"] = $value->descripcion;
 
 		}
 		echo json_encode($comunas);
