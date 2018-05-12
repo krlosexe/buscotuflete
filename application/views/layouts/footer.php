@@ -20,7 +20,6 @@
 <script src="<?= base_url()?>assets/js/matrix.form_validation.js"></script> 
 <script src="<?= base_url()?>assets/js/jquery.wizard.js"></script> 
 <script src="<?= base_url()?>assets/js/jquery.uniform.js"></script> 
-<script src="<?= base_url()?>assets/js/select2.min.js"></script> 
 <script src="<?= base_url()?>assets/js/matrix.popover.js"></script> 
 
 
@@ -48,6 +47,10 @@ function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }
 </script>
+
+
+
+
  </body>
 
 </html>

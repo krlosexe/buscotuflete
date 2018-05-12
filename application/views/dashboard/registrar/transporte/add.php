@@ -39,7 +39,7 @@
               <div class="control-group">
                 <label class="control-label">Tipo de Vehiculo :</label>
                 <div class="controls">
-                 <select class="span6" name="id_tipo_vehiculo" id="id_tipo_vehiculo">
+                 <select class="span6 " name="id_tipo_vehiculo" id="id_tipo_vehiculo">
                   <option value="">Seleccione..</option>
                  	<?php foreach ($type_vehiculos as $value): ?>
                  		<option value="<?= $value->id?>"><?= $value->descripcion?></option>
