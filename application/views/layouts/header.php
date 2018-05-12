@@ -6,6 +6,9 @@
 			<link rel="stylesheet" href="<?= base_url()?>assets/css/bootstrap.min.css" />
 			<link rel="stylesheet" href="<?= base_url()?>assets/css/bootstrap-responsive.min.css" />
 	        <link rel="stylesheet" href="<?= base_url()?>assets/css/matrix-login.css" />
+	        <link rel="stylesheet" href="<?= base_url()?>assets/css/select2.css" />
+	        <link rel="stylesheet" href="<?= base_url()?>assets/css/uniform.css" />
+
 	        <link rel="stylesheet" href="<?= base_url()?>/assets/css/jquery.gritter.css" />
 	        <link href="<?= base_url()?>assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 			<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>

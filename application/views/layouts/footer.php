@@ -3,7 +3,8 @@
  <script src="<?= base_url()?>assets/js/jquery.gritter.min.js"></script> 
 
  <!--end-Footer-part-->
-
+<script src="<?= base_url()?>assets/js/jquery.dataTables.min.js"></script> 
+<script src="<?= base_url()?>assets/js/matrix.tables.js"></script> 
 <script src="<?= base_url()?>assets/js/excanvas.min.js"></script> 
 <script src="<?= base_url()?>assets/js/jquery.ui.custom.js"></script> 
 <script src="<?= base_url()?>assets/js/bootstrap.min.js"></script> 
@@ -21,8 +22,7 @@
 <script src="<?= base_url()?>assets/js/jquery.uniform.js"></script> 
 <script src="<?= base_url()?>assets/js/select2.min.js"></script> 
 <script src="<?= base_url()?>assets/js/matrix.popover.js"></script> 
-<script src="<?= base_url()?>assets/js/jquery.dataTables.min.js"></script> 
-<script src="<?= base_url()?>assets/js/matrix.tables.js"></script> 
+
 
 <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to

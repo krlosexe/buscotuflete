@@ -4,7 +4,23 @@ $(document).ready(function(){
 	$('.data-table').dataTable({
 		"bJQueryUI": true,
 		"sPaginationType": "full_numbers",
-		"sDom": '<""l>t<"F"fp>'
+		"sDom": '<""l>t<"F"fp>',
+		"lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+            "zeroRecords": "No se encontraron resultados en su busqueda",
+            "searchPlaceholder": "Buscar registros",
+            "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "search": "Buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+        }
 	});
 	
 	$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
